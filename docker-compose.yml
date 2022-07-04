@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  container_db_pg:
+    image: postgres
+    container_name: container_db_pg
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=secretpassword
+      - POSTGRES_DB=app_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: app
+    links:
+      - container_db_pg
+    depends_on:
+      - container_db_pg
+    ports:
+      - 3333:3333
+      - 9229:9229
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules/bcrypt/
+    environment:
+      DATABASE_URL: postgres://docker:ignite@container_db_pg:5432/app_db
+
+volumes:
+  pgdata:
+    driver: local
+
+# docker-compose up --force-recreate -d
+# docker logs app_db -f
