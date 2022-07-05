@@ -39,6 +39,10 @@ ext install PKief.material-icon-theme
 ext install styled-components.vscode-styled-components
 ext install rocketseat.RocketseatReactJS
 ext install rocketseat.RocketseatReactNative
+ext install miguelsolorio.fluent-icons
+ext install streetsidesoftware.code-spell-checker
+ext install rvest.vs-code-prettier-eslint
+ext install humao.rest-client
 ```
 
 You can find in the Command Palette (Ctrl+Shift+P) to **Toggle** or via Settings
